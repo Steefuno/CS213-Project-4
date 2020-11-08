@@ -6,6 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This class starts the ordering program
+ * @author Steven Nguyen, Julian Romero
+ */
 public class Main extends Application {
 
 	@Override
@@ -14,18 +18,16 @@ public class Main extends Application {
 			// Load the order scene
 			FXMLLoader orderSceneFXML = new FXMLLoader(getClass().getResource("Order.fxml"));
 			Scene orderScene = (Scene)orderSceneFXML.load();
-			orderScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(orderScene);
 			primaryStage.setTitle("Order");
 			
 			// Load the shopping cart scene
 			FXMLLoader cartSceneFXML = new FXMLLoader(getClass().getResource("Cart.fxml"));
 			Scene cartScene = (Scene)cartSceneFXML.load();
-			cartScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			
-			// Setup the order scene and pass over the cart scene
+			// Pass over the cart scene into the orderController to be used when showing the cart
 			OrderController orderController = orderSceneFXML.<OrderController>getController();
-			orderController.setup(cartScene);
+			orderController.addCartScene(cartScene);
 			
 			primaryStage.show();
 		} catch(Exception e) {
