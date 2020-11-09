@@ -28,7 +28,7 @@ public class Main extends Application {
 			OrderController orderController = orderSceneFXML.<OrderController>getController();
 			CartController cartController = cartSceneFXML.<CartController>getController();
 			
-			orderController.setCartController(primaryStage, cartController);
+			orderController.setCartController(cartController);
 			
 			primaryStage.show();
 		} catch(Exception e) {

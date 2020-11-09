@@ -2,7 +2,6 @@ package Application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -47,9 +46,6 @@ public class OrderController {
 
     @FXML
     private TextArea Output;
-    
-    // The Loaded FXML for Cart.fxml
-    private Stage PrimaryStage;
     
     // The controller to handle Cart.fxml
     private CartController CartController;
@@ -160,7 +156,7 @@ public class OrderController {
 
     @FXML
     void OnShowOrder(ActionEvent event) {
-    	//CartController.show(PrimaryStage); //TODO setup interaction
+    	//CartController.show(); //TODO setup interaction
     	return;
     }
 
@@ -179,8 +175,7 @@ public class OrderController {
     }
 
     // Passes the cart scene from the main class to the order controller
-	public void setCartController(Stage primaryStage, CartController cartController) {
-		PrimaryStage = primaryStage;
+	public void setCartController(CartController cartController) {
 		CartController = cartController;
 		return;
 	}
