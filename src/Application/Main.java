@@ -23,11 +23,12 @@ public class Main extends Application {
 			
 			// Load the shopping cart scene
 			FXMLLoader cartSceneFXML = new FXMLLoader(getClass().getResource("Cart.fxml"));
-			Scene cartScene = (Scene)cartSceneFXML.load();
 			
-			// Pass over the cart scene into the orderController to be used when showing the cart
+			// Pass over the cart controller into the orderController to be used when showing the cart
 			OrderController orderController = orderSceneFXML.<OrderController>getController();
-			orderController.addCartScene(cartScene);
+			CartController cartController = cartSceneFXML.<CartController>getController();
+			
+			orderController.setCartController(primaryStage, cartController);
 			
 			primaryStage.show();
 		} catch(Exception e) {

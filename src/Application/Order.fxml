@@ -8,13 +8,11 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
 
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.OrderController">
    <root>
@@ -44,7 +42,7 @@
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Included Ingredients" textAlignment="CENTER" />
                               <Separator prefWidth="200.0" />
-                              <TextArea fx:id="IncludedIngredientsListView" editable="false" prefHeight="200.0" prefWidth="200.0">
+                              <TextArea fx:id="IncludedIngredientsTextArea" editable="false" prefHeight="200.0" prefWidth="200.0">
                                  <VBox.margin>
                                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                  </VBox.margin>
@@ -56,11 +54,7 @@
                               <Insets />
                            </HBox.margin>
                            <center>
-                              <ImageView fx:id="SandwichImageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Images/Chicken%20Sandwich.png" />
-                                 </image>
-                              </ImageView>
+                              <ImageView fx:id="SandwichImageView" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </center>
                            <padding>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -124,7 +118,7 @@
                         <Insets />
                      </VBox.margin>
                      <center>
-                        <TextArea editable="false" />
+                        <TextArea fx:id="Output" editable="false" />
                      </center>
                   </BorderPane>
                </children>

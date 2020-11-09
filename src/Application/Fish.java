@@ -4,22 +4,22 @@ package Application;
  * This class represents a chicken sandwich
  * @author Steven Nguyen, Julian Romero
  */
-public class Chicken extends Sandwich {
+public class Fish extends Sandwich {
 	// Ingredients in every chicken sandwich
 	private static final String[] INCLUDED_INGREDIENTS = {
-		"Fried Chicken",
-		"Spicy Sauce",
-		"Pickles"
+		"Grilled Snapper",
+		"Cilantro",
+		"Lime"
 	};
 	
 	// Cost of a chicken sandwich with no extras
-	private static final double BASE_PRICE = 8.99;
+	private static final double BASE_PRICE = 12.99;
 	
 	// Location of image for a chicken sandwich
-	private static String IMAGE_LOCATION = "Application/../Images/Chicken Sandwich.png";
+	private static String IMAGE_LOCATION = "Application/../Images/Fish Sandwich.png";
 	
 	// Constructs a chicken sandwich with no extras
-	public Chicken() {
+	public Fish() {
 		super();
 	}
 	
@@ -44,7 +44,7 @@ public class Chicken extends Sandwich {
 	// Gets the string form
 	@Override
 	public String toString() {
-		String result = "Chicken Sandwich with ";
+		String result = "Fish Sandwich with ";
 		String extras = super.toString();
 		
 		for (String ingredient : INCLUDED_INGREDIENTS) {

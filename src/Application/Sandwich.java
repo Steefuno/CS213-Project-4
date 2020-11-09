@@ -33,12 +33,15 @@ public abstract class Sandwich implements Customizable{
 	public Sandwich() {}
 	
 	// Returns Extras
-	public ArrayList<Extra> getExtras() {
-		return this.Extras;
+	public Object[] getExtras() {
+		return this.Extras.toArray();
 	}
 	
 	// Returns included ingredients for a given sandwich type
 	public abstract String[] getIncluded();
+	
+	// Returns the location of the image to represent the sandwich
+	public abstract String getImageLocation();
 	
 	// Calculate price
 	public abstract double price();
@@ -48,7 +51,7 @@ public abstract class Sandwich implements Customizable{
 		return this.Extras.size() * PER_EXTRA;
 	}
 	
-	// Adds an ingredient
+	// Adds an extra ingredient
 	@Override
 	public boolean add(Object obj) {
 		if (this.Extras.size() >= 6)
@@ -58,11 +61,17 @@ public abstract class Sandwich implements Customizable{
 		return this.Extras.add(ingredient);
 	}
 	
-	// Removes an ingredient
+	// Removes an extra ingredient
 	@Override
 	public boolean remove(Object obj) {
 		Extra ingredient = (Extra)obj;	
 		return this.Extras.remove(ingredient);
+	}
+	
+	// Removes all extra ingredients
+	public void removeAll() {
+		this.Extras.clear();
+		return;
 	}
 	
 	// Returns the string form

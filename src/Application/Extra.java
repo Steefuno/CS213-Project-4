@@ -9,7 +9,7 @@ public class Extra {
 	private static final String[] AvailableExtrasOptions = {
 		"Tomato",
 		"Onion",
-		"Cheese",
+		"Chives",
 		"Cucumber",
 		"Mushroom",
 		"Bacon",
@@ -18,9 +18,13 @@ public class Extra {
 		"Tangy Sauce",
 		"Celery",
 		"Leek",
+		// The below ingredients are me messing around
 		"HAM",
-		"Mint",
-		"Bibbs"
+		"Toes",
+		"Cat Tears",
+		// The below ingredients are friends of mine
+		"Bibbs",
+		"Shioya"
 	};
 	
 	// The name of the ingredient
