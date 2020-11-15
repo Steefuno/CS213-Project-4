@@ -1,13 +1,13 @@
 package Application;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Order implements Customizable {
     private static int lineNumber;
     private ArrayList<OrderLine> orderLines;
-    static final int line_number = 0;
+
 
     public Order() {
-        this.lineNumber += line_number;
         this.orderLines = new ArrayList<>();
     }
 
@@ -15,7 +15,9 @@ public class Order implements Customizable {
     @Override
     public boolean add(Object obj) {
         OrderLine orderLine = (OrderLine) obj;
+        lineNumber++;
         return this.orderLines.add(orderLine);
+
     }
 
     // Removes an orderLine from order
@@ -28,7 +30,6 @@ public class Order implements Customizable {
     // Removes all orderLines from order
     public void removeAll() {
         this.orderLines.clear();
-        return;
     }
     public double totalPrice(){
         double total = 0;
@@ -36,5 +37,30 @@ public class Order implements Customizable {
             total += orderLines.get(i).getPrice();
         }
         return total;
+    }
+
+
+    public OrderLine find(int lineNumber) {
+        for(int i = 0; i < orderLines.size(); i++){
+            if(orderLines.get(i).getLineNumber() == lineNumber){
+                return orderLines.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void PrintList() {
+        for(int i = 0; i < orderLines.size(); i++){
+           System.out.println("Order lines with line #: " + lineNumber + " " + orderLines.get(i));
+        }
+
+    }
+    // Returns the string form
+    @Override
+    public String toString() {
+
+        String result = lineNumber + " ";
+        result += this.orderLines.get(orderLines.size()-1).toString();
+        return result;
     }
 }
