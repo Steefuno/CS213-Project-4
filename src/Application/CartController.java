@@ -25,11 +25,24 @@ public class CartController {
 
     private Order currentOrder;
     private OrderLine currentOrderLine;
-    private OrderController orderController;
+    private OrderController OrderController;
     private Stage secondStage;
 
     void setup(){
         currentOrder = new Order();
+    }
+    public void setOrderController(OrderController orderController) {
+        try {
+            FXMLLoader cartSceneFXML = new FXMLLoader(getClass().getResource("Cart.fxml"));
+            secondStage = new Stage();
+            Scene cartScene = (Scene) cartSceneFXML.load();
+
+            secondStage.setScene(cartScene);
+            secondStage.setTitle("Cart");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     void add(Sandwich sandwich){
@@ -62,10 +75,8 @@ public class CartController {
         }
 
         //found order line with same serial and put in current order
-        OrderLine lineOrder = currentOrder.find(index);
-
+        OrderLine lineOrder = this.currentOrder.find(index);
         //found order line and add identical sandwich to list using add method
-        currentOrder.PrintList();
         this.add(lineOrder.getSandwich());
     }
 
@@ -82,6 +93,7 @@ public class CartController {
     void clearOrder(ActionEvent event) {
         currentOrder.removeAll();
         cartOrderView.getItems().clear();
+        this.currentOrderLine.reset();
         this.orderTotalCart.setText(String.valueOf(currentOrder.totalPrice()));
     }
 
@@ -111,8 +123,8 @@ public class CartController {
 
     @FXML
     void saveOrderToFile(ActionEvent event) {
-        MultipleSelectionModel<String> selectionModel = cartOrderView.getSelectionModel();
-        if(selectionModel.isEmpty()){
+        //MultipleSelectionModel<String> selectionModel = cartOrderView.getSelectionModel();
+        if(cartOrderView.getItems().isEmpty()){
             return;
         }
 
@@ -129,11 +141,15 @@ public class CartController {
         if(orderLine == null){
             return;
         }
-
-        if(selectionModel.isEmpty()){
-            return;
+        //put in right format
+        String result = "";
+        String cartString = cartOrderView.getItems().toString().substring(1,cartOrderView.getItems().toString().length()-1);
+        String [] arrayX = cartString.split(", ",-2);
+        for(int i = 0; i < arrayX.length; i++){
+            result += arrayX[i] + "\n";
         }
-        saveTextToFile(this.currentOrder.toString(),orderLine);
+
+        saveTextToFile(result,orderLine);
 
     }
     /**
