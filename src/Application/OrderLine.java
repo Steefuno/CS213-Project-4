@@ -7,10 +7,11 @@ public class OrderLine {
     private Sandwich sandwich;
     private double price;
 
-    static final int line_number = 0;
+    private static int line_number = 1;
 
     public OrderLine(Sandwich sandwich, double price) {
-        this.lineNumber += line_number;
+        this.lineNumber = line_number;
+        line_number++;
         this.sandwich = sandwich;
         this.price = price;
     }
@@ -30,9 +31,8 @@ public class OrderLine {
     // Returns the string form
     @Override
     public String toString() {
-        String result = this.lineNumber + ", ";
-        result += this.sandwich.toString();
-        result += ", Price $" + this.price;
+        String result = this.sandwich.toString();
+        result += " Price $" + this.price;
         return result;
     }
 }
