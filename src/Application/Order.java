@@ -29,7 +29,9 @@ public class Order implements Customizable {
 
     // Removes all orderLines from order
     public void removeAll() {
+        lineNumber = 0;
         this.orderLines.clear();
+
     }
     public double totalPrice(){
         double total = 0;
@@ -48,13 +50,7 @@ public class Order implements Customizable {
         }
         return null;
     }
-
-    public void PrintList() {
-        for(int i = 0; i < orderLines.size(); i++){
-           System.out.println("Order lines with line #: " + lineNumber + " " + orderLines.get(i));
-        }
-
-    }
+    
     // Returns the string form
     @Override
     public String toString() {
