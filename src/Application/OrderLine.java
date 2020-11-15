@@ -15,6 +15,9 @@ public class OrderLine {
         this.sandwich = sandwich;
         this.price = price;
     }
+    public void reset(){
+        line_number = 1;
+    }
 
     public int getLineNumber() {
         return lineNumber;
