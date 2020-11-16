@@ -1,14 +1,12 @@
 package Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,8 +26,7 @@ public class CartController {
 
     private Order currentOrder;
     private OrderLine currentOrderLine;
-    private OrderController OrderController;
-    private Stage secondStage;
+    private Stage cartStage;
 
     /**
      * sets up an order object
@@ -38,18 +35,12 @@ public class CartController {
         currentOrder = new Order();
     }
 
-    public void setOrderController(OrderController orderController) {
-        try {
-            FXMLLoader cartSceneFXML = new FXMLLoader(getClass().getResource("Cart.fxml"));
-            secondStage = new Stage();
-            Scene cartScene = (Scene) cartSceneFXML.load();
+    /**
+     * gets the stage from main
+     */
+    public void stagePasser(Stage cartFromMain){
+        cartStage = cartFromMain;
 
-            secondStage.setScene(cartScene);
-            secondStage.setTitle("Cart");
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -57,16 +48,17 @@ public class CartController {
      * @param sandwich sandwiches
      */
     public void add(Sandwich sandwich){
-        this.currentOrderLine = new OrderLine(sandwich,sandwich.price());
-        this.currentOrder.add(currentOrderLine);
+        currentOrderLine = new OrderLine(sandwich,sandwich.price());
+        currentOrder.add(currentOrderLine);
         cartOrderView.getItems().add(this.currentOrderLine.toString());
-        this.orderTotalCart.setText(String.valueOf(currentOrder.totalPrice()));
+        orderTotalCart.setText(String.valueOf(currentOrder.totalPrice()));
     }
 
-
-    public void show(){//TODO setup interaction
-        //secondStage.show();
-        //firstStage.show();
+    /**
+     * shows the cartstage for ordercontroller
+     */
+    public void show(){
+        cartStage.show();
     }
     /**
      * gets the index of the selected item for different number of digits
@@ -108,11 +100,8 @@ public class CartController {
 
     @FXML
     void backToOrder(ActionEvent event) {//TODO setup interaction
-        //OrderController.show()
-        //firstStage.show();
-        //secondStage.close();
+        cartStage.close();
         return;
-
     }
 
     @FXML
