@@ -171,6 +171,10 @@ public class OrderController {
 
         setupSandwichTypes();
         AvailableExtrasListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        SandwichType.getSelectionModel().selectFirst();
+        OnSandwichTypeSelected(null);
+
         return;
     }
 

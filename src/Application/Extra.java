@@ -40,9 +40,28 @@ public class Extra {
 		return AvailableExtrasOptions;
 	}
 	
+	// Getter for ingredient
+	public String getIngredient() {
+		return ingredient;
+	}
+	
 	// Gets the string form
 	@Override
 	public String toString() {
 		return ingredient;
+	}
+	
+	// Checks if an object equals this Extra
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Extra) {
+			Extra extra = (Extra) obj;
+			String otherIngredient = extra.getIngredient();
+			String thisIngredient = this.getIngredient();
+			
+			return (thisIngredient.equals(otherIngredient));
+		} else {
+			return false;
+		}
 	}
 }
