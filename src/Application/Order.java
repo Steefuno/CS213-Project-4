@@ -2,6 +2,10 @@ package Application;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * This class represents an order
+ * @author Steven Nguyen, Julian Romero
+ */
 public class Order implements Customizable {
     private static int lineNumber;
     private ArrayList<OrderLine> orderLines;
@@ -19,11 +23,22 @@ public class Order implements Customizable {
         return this.orderLines.add(orderLine);
 
     }
+    private void decrementSerial(int lineNumber){
+        for(int i = lineNumber; i < orderLines.size();i++){
+            orderLines.get(i).setLineNumber(orderLines.get(i).getLineNumber()-1);
+        }
+    }
+
+    public ArrayList<OrderLine> getOrderLines() {
+        return orderLines;
+    }
 
     // Removes an orderLine from order
     @Override
     public boolean remove(Object obj) {
         OrderLine orderLine = (OrderLine) obj;
+        decrementSerial(orderLine.getLineNumber());
+        lineNumber--;
         return this.orderLines.remove(orderLine);
     }
 
@@ -38,6 +53,7 @@ public class Order implements Customizable {
         for(int i = 0; i < orderLines.size();i++){
             total += orderLines.get(i).getPrice();
         }
+        total = Double.parseDouble(String.format("%.2f",total));
         return total;
     }
 
@@ -50,13 +66,16 @@ public class Order implements Customizable {
         }
         return null;
     }
-    
+
     // Returns the string form
     @Override
     public String toString() {
+        String result =  "";
+        Iterator<OrderLine> i = this.orderLines.iterator();
 
-        String result = lineNumber + " ";
-        result += this.orderLines.get(orderLines.size()-1).toString();
+        while (i.hasNext())
+            result += i.next().toString() + " | " + "\n";
+
         return result;
     }
 }
