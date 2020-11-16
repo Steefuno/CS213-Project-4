@@ -9,12 +9,15 @@ import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.application.Application;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * This class handles the cart scene
+ * @author Steven Nguyen, Julian Romero
+ */
 public class CartController {
 
     @FXML
@@ -45,10 +48,10 @@ public class CartController {
         }
     }
 
-    void add(Sandwich sandwich){
+    public void add(Sandwich sandwich){
         this.currentOrderLine = new OrderLine(sandwich,sandwich.price());
         this.currentOrder.add(currentOrderLine);
-        cartOrderView.getItems().add(this.currentOrder.toString());
+        cartOrderView.getItems().add(this.currentOrderLine.toString());
         this.orderTotalCart.setText(String.valueOf(currentOrder.totalPrice()));
     }
 
@@ -56,6 +59,21 @@ public class CartController {
     public void show(){//TODO setup interaction
         //secondStage.show();
         //firstStage.show();
+    }
+    private int getIndex(ObservableList<String> selectedItems){
+        int index;
+        if(selectedItems.get(0).substring(1,2).contains(" ")) {
+            index = Integer.parseInt(selectedItems.get(0).substring(0,1));
+            return index;
+        }
+        else if(selectedItems.get(0).substring(2,3).contains(" ")){
+            index = Integer.parseInt(selectedItems.get(0).substring(0,2));
+            return index;
+        }
+        else{
+            index = Integer.parseInt(selectedItems.get(0).substring(0,3));
+            return index;
+        }
     }
 
     @FXML
@@ -65,14 +83,9 @@ public class CartController {
         if(selectionModel.isEmpty()){
             return;
         }
-        ObservableList<String> selectedItems = selectionModel.getSelectedItems();
 
-        if(selectedItems.get(0).substring(1,2).contains(" ")) {
-            index = Integer.parseInt(selectedItems.get(0).substring(0,1));
-        }
-        else{
-            index = Integer.parseInt(selectedItems.get(0).substring(0,2));
-        }
+        ObservableList<String> selectedItems = selectionModel.getSelectedItems();
+        index = getIndex(selectedItems);
 
         //found order line with same serial and put in current order
         OrderLine lineOrder = this.currentOrder.find(index);
@@ -105,18 +118,18 @@ public class CartController {
         }
         ObservableList<String> selectedItems = selectionModel.getSelectedItems();
         int index;
-        //check for single or double digit serial number
-        if(selectedItems.get(0).substring(1,2).contains(" ")){
-            index = Integer.parseInt(selectedItems.get(0).substring(0,1));
-        }
-        else{
-            index = Integer.parseInt(selectedItems.get(0).substring(0,2));
-        }
-
+        index = getIndex(selectedItems);
         OrderLine lineOrder = this.currentOrder.find(index);
-        cartOrderView.getItems().remove(index + " " + lineOrder.toString());
-        this.currentOrder.remove(lineOrder);
 
+        this.currentOrder.remove(lineOrder);
+        this.currentOrderLine.decrementSerial();
+        cartOrderView.getItems().clear();
+        String result;
+
+        for(int i = 0; i < this.currentOrder.getOrderLines().size();i++){
+            result = this.currentOrder.getOrderLines().get(i).toString();
+            cartOrderView.getItems().add(result);
+        }
 
         this.orderTotalCart.setText(String.valueOf(currentOrder.totalPrice()));
     }
@@ -141,15 +154,7 @@ public class CartController {
         if(orderLine == null){
             return;
         }
-        //put in right format
-        String result = "";
-        String cartString = cartOrderView.getItems().toString().substring(1,cartOrderView.getItems().toString().length()-1);
-        String [] arrayX = cartString.split(", ",-2);
-        for(int i = 0; i < arrayX.length; i++){
-            result += arrayX[i] + "\n";
-        }
-
-        saveTextToFile(result,orderLine);
+        saveTextToFile(this.currentOrder.toString(),orderLine);
 
     }
     /**
