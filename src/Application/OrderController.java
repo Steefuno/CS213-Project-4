@@ -160,7 +160,7 @@ public class OrderController {
 
     @FXML
     void OnShowOrder(ActionEvent event) {
-    	//CartController.show(); //TODO setup interaction
+    	CartController.show();
     	return;
     }
 
