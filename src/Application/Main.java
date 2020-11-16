@@ -33,6 +33,7 @@ public class Main extends Application {
 			CartController cartController = cartSceneFXML.<CartController>getController();
 			
 			orderController.setCartController(cartController);
+			cartController.stagePasser(cartStage);
 			
 			primaryStage.show();
 		} catch(Exception e) {
