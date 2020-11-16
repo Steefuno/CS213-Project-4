@@ -87,7 +87,11 @@ public class OrderController {
 			return;
 		}
 		
-		//CartController.add(currentSandwich); //TODO Setup interaction
+		System.out.println(CartController == null);
+		if (CartController == null)
+			return;
+		
+		CartController.add(currentSandwich);
 		output("Added to cart: " + currentSandwich.toString() + "\n");
 		clearInput();
 		
@@ -297,13 +301,8 @@ public class OrderController {
 	
 	// Clear the screen and sandwich
 	private void clearInput() {
-		currentSandwich = null;
-		SandwichType.getSelectionModel().clearSelection();
-		
-		refreshImage();
-		refreshIncludedIngredients();
-		refreshExtraIngredients();
-		refreshPrice();
+        SandwichType.getSelectionModel().selectFirst();
+        OnSandwichTypeSelected(null);
 		
 		return;
 	}
