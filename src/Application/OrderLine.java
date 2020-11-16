@@ -1,7 +1,5 @@
 package Application;
 
-import java.util.StringTokenizer;
-
 /**
  * This class represents an order line
  * @author Steven Nguyen, Julian Romero
@@ -13,36 +11,66 @@ public class OrderLine {
 
     private static int line_number = 1;
 
-    public void setLineNumber(int lineNumber) {
-        this.lineNumber = lineNumber;
-    }
-
+    /**
+     * Constructs an orderline that increments the line number
+     * @param sandwich			the sandwich of the orderline
+     * @param price			the last name of the profile
+     */
     public OrderLine(Sandwich sandwich, double price) {
         this.lineNumber = line_number;
         line_number++;
         this.sandwich = sandwich;
         this.price = price;
     }
-    public void decrementSerial(){
-        line_number--;
-    }
-    public void reset(){
-        line_number = 1;
-    }
 
+    /**
+     * Gets the line number from orderline
+     * @return	the linenumber
+     */
     public int getLineNumber() {
         return lineNumber;
     }
 
+    /**
+     * Sets the line number for orderline
+     */
+    public void setLineNumber(int lineNumber) {
+        this.lineNumber = lineNumber;
+    }
+
+    /**
+     * decrements the line number for orderline static int
+     */
+    public void decrementSerial(){
+        line_number--;
+    }
+
+    /**
+     * resets the line number for orderline static int to 1
+     */
+    public void reset(){
+        line_number = 1;
+    }
+    /**
+     * Gets the sandwich from orderline
+     * @return	sandwich from orderline
+     */
     public Sandwich getSandwich() {
         return sandwich;
     }
 
+    /**
+     * Gets the price from orderline
+     * @return	double price from orderline
+     */
     public double getPrice() {
         return price;
     }
 
-    // Returns the string form
+    /**
+     * Gets the string representation from orderline
+     * @return string representation of orderline
+     */
     @Override
     public String toString() {
         String result = this.lineNumber + " ";

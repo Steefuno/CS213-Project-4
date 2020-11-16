@@ -31,9 +31,13 @@ public class CartController {
     private OrderController OrderController;
     private Stage secondStage;
 
+    /**
+     * sets up an order object
+     */
     void setup(){
         currentOrder = new Order();
     }
+
     public void setOrderController(OrderController orderController) {
         try {
             FXMLLoader cartSceneFXML = new FXMLLoader(getClass().getResource("Cart.fxml"));
@@ -48,6 +52,10 @@ public class CartController {
         }
     }
 
+    /**
+     * Makes an orderline object that stores the sandwich input and adds it in current order
+     * @param sandwich sandwiches
+     */
     public void add(Sandwich sandwich){
         this.currentOrderLine = new OrderLine(sandwich,sandwich.price());
         this.currentOrder.add(currentOrderLine);
@@ -60,6 +68,11 @@ public class CartController {
         //secondStage.show();
         //firstStage.show();
     }
+    /**
+     * gets the index of the selected item for different number of digits
+     * @param selectedItems a selected item from observable list
+     * @return int returns the index of selected item
+     */
     private int getIndex(ObservableList<String> selectedItems){
         int index;
         if(selectedItems.get(0).substring(1,2).contains(" ")) {
