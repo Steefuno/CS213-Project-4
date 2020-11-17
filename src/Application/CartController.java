@@ -31,8 +31,10 @@ public class CartController {
     /**
      * sets up an order object
      */
-    void setup(){
+    @FXML
+    void initialize(){
         currentOrder = new Order();
+        return;
     }
 
     /**
