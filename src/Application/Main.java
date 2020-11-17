@@ -35,7 +35,6 @@ public class Main extends Application {
 
             orderController.setCartController(cartController);
             cartController.stagePasser(cartStage);
-            cartController.setup();
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();
