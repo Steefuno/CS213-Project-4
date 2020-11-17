@@ -20,6 +20,9 @@ public class Main extends Application {
             Scene orderScene = (Scene)orderSceneFXML.load();
             primaryStage.setScene(orderScene);
             primaryStage.setTitle("Order");
+            
+            primaryStage.setMinHeight(550);
+            primaryStage.setMinWidth(550);
 
             // Load the shopping cart scene
             FXMLLoader cartSceneFXML = new FXMLLoader(getClass().getResource("Cart.fxml"));
@@ -31,7 +34,6 @@ public class Main extends Application {
             // Pass over the cart controller into the orderController to be used when showing the cart
             OrderController orderController = orderSceneFXML.<OrderController>getController();
             CartController cartController = cartSceneFXML.<CartController>getController();
-
 
             orderController.setCartController(cartController);
             cartController.stagePasser(cartStage);

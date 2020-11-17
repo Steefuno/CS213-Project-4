@@ -87,7 +87,6 @@ public class OrderController {
 			return;
 		}
 		
-		System.out.println(CartController == null);
 		if (CartController == null)
 			return;
 		
@@ -215,12 +214,10 @@ public class OrderController {
 		try {
 			image = new Image(imageLocation);
 		} catch(NullPointerException e) {
-			//output("Image not found.");
-			System.out.println("Image not found.");
+			output("Image not found.");
 			return;
 		} catch(IllegalArgumentException e) {
-			//output("Image invalid.");
-			System.out.println("Image invalid.");
+			output("Image invalid.");
 			return;
 		}
 		

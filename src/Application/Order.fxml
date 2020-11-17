@@ -16,9 +16,9 @@
 
 <Scene xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.OrderController">
    <root>
-      <BorderPane>
+      <BorderPane minHeight="500.0" minWidth="500.0" prefHeight="550.0" prefWidth="550.0">
          <center>
-            <VBox alignment="CENTER" minHeight="500.0" minWidth="500.0" prefHeight="500.0" prefWidth="500.0">
+            <VBox alignment="CENTER">
                <children>
                   <HBox alignment="CENTER" maxHeight="200.0" minHeight="200.0" prefHeight="200.0" VBox.vgrow="NEVER">
                      <children>
